@@ -22,3 +22,7 @@ Artinya publisher dan subscriber terhubung ke message broker yang sama, yaitu Ra
 
 - **Publisher** menulis/mengirim pesan **ke** broker tersebut
 - **Subscriber** membaca/menerima pesan **dari** broker yang sama
+
+## RabbitMQ Running Screenshot
+
+![Running RabbitMQ](assets/rabbitmq-screenshot.png)
