@@ -26,3 +26,12 @@ Artinya publisher dan subscriber terhubung ke message broker yang sama, yaitu Ra
 ## RabbitMQ Running Screenshot
 
 ![Running RabbitMQ](assets/rabbitmq-screenshot.png)
+
+## Sending and Processing Event
+
+![Sending and Processing Event](assets/sending-processing.png)
+
+Saat publisher di run, publisher mengirim 5 events ke RabbitMQ message broker. 
+Subscriber yang terhubung ke broker yang sama melalui `amqp://guest:guest@127.0.0.1:5672`,
+menerima dan memproses setiap event satu per satu. Publisher bertindak seperti event producer, 
+sementara subscriber bertindak sebagai event consumer.
