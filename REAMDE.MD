@@ -54,3 +54,9 @@ a middleman between publisher and subscriber.
 Lonjakan (spikes) pada grafik message rates muncul setiap kali program publisher dijalankan (`cargo run`). 
 Tiap kali publisher jalan, publisher langsung mengirim 5 event sekaligus ke message broker, maka dari itu publish rate-nya langsung melonjak tajam. Lalu, begitu ke-5 pesannya selesai dikirim dan diterima oleh subscriber, grafiknya akan turun lagi ke angka 0. Hal ini menunjukan bagaimana peran message broker yang benar-benar bekerja sebagai perantara (middleman) antara publisher dan subscriber.
 
+## Simulation Slow Subscriber
+
+![Slow Subscriber](assets/slow-subscriber.png)
+
+Dengan dihilangkannya komentar (uncomment) pada `thread::sleep`, subscriber akan memproses setiap pesan dengan jeda selama 1 detik. 
+Ketika publisher dijalankan berkali-kali secara berurutan dalam waktu singkat, pesan-pesan mulai mengantre di dalam RabbitMQ karena subscriber tidak dapat mengimbangi laju pesan yang masuk. Hal ini dapat dilihat pada grafik queued messages, di mana pesan terakumulasi terlebih dahulu sebelum akhirnya dikonsumsi secara perlahan satu per satu.
