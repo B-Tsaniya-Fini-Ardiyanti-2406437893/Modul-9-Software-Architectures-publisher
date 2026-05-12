@@ -58,5 +58,4 @@ Tiap kali publisher jalan, publisher langsung mengirim 5 event sekaligus ke mess
 
 ![Slow Subscriber](assets/slow-subscriber.png)
 
-Dengan dihilangkannya komentar (uncomment) pada `thread::sleep`, subscriber akan memproses setiap pesan dengan jeda selama 1 detik. 
-Ketika publisher dijalankan berkali-kali secara berurutan dalam waktu singkat, pesan-pesan mulai mengantre di dalam RabbitMQ karena subscriber tidak dapat mengimbangi laju pesan yang masuk. Hal ini dapat dilihat pada grafik queued messages, di mana pesan terakumulasi terlebih dahulu sebelum akhirnya dikonsumsi secara perlahan satu per satu.
+Berdasarkan eksperimen saya, total puncak antrean (queued messages) mencapai angka 6. Hal ini terjadi karena saya menjalankan program publisher yang mengirimkan pesan, namun di saat yang bersamaan subscriber sempat mengalami penundaan/belum mengonsumsi pesan secara maksimal. Akibatnya, pesan terakumulasi di RabbitMQ hingga mencapai 6 pesan. Setelah subscriber kembali aktif memproses dengan jeda 1 detik per pesan (karena simulasi slow subscriber), antrean tersebut perlahan-lahan menurun hingga habis (0). Perbedaan dengan contoh modul (20 pesan) murni karena perbedaan jumlah eksekusi dan kecepatan menjalankan command publisher.
